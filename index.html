@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Xác minh thông tin</title>
+
+  <!-- KẾT NỐI CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="bg"></div>
+  <div class="overlay"></div>
+
+  <!-- FORM CARD -->
+  <div class="card" id="formBox">
+
+    <!-- BANNER -->
+    <div class="banner">
+      <img src="banner.jpg" alt="">
+      <div class="banner-text">XÁC MINH THÔNG TIN</div>
+    </div>
+
+    <div class="card-body">
+      <label>Số CCCD</label>
+      <input id="cccd" maxlength="12" placeholder="Nhập số CCCD ">
+
+      <label>Số điện thoại</label>
+      <input id="phone" maxlength="10" placeholder="">
+
+      <label>Địa chỉ nhà</label>
+      <input placeholder="Nhập địa chỉ">
+
+      <label>Email</label>
+      <input id="email" placeholder="example@gmail.com">
+
+      <button onclick="submitForm()">Xác nhận</button>
+    </div>
+  </div>
+
+  <!-- THÔNG BÁO -->
+  <div class="card success" id="successBox">
+    <div class="card-body">
+      ✅ Đã gửi thông tin thành công <br>
+      Vui lòng chờ xử lý...
+    </div>
+  </div>
+
+<script>
+function submitForm() {
+  if (!/^\d{12}$/.test(cccd.value)) return alert("CCCD không hợp lệ");
+  if (!/^0\d{9}$/.test(phone.value)) return alert("SĐT không hợp lệ");
+  if (!/^\S+@\S+\.\S+$/.test(email.value)) return alert("Email không hợp lệ");
+
+  formBox.style.display = "none";
+  successBox.style.display = "block";
+}
+</script>
+
+</body>
+</html>
