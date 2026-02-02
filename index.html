@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Xác minh thông tin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- KẾT NỐI CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +14,7 @@
   <div class="bg"></div>
   <div class="overlay"></div>
 
-  <!-- FORM CARD -->
+  <!-- FORM -->
   <div class="card" id="formBox">
 
     <!-- BANNER -->
@@ -24,37 +25,52 @@
 
     <div class="card-body">
       <label>Số CCCD</label>
-      <input id="cccd" maxlength="12" placeholder="Nhập số CCCD ">
+      <input id="cccd" type="text" maxlength="12" required>
 
       <label>Số điện thoại</label>
-      <input id="phone" maxlength="10" placeholder="">
+      <input id="phone" type="text" maxlength="10" required>
 
       <label>Địa chỉ nhà</label>
-      <input placeholder="Nhập địa chỉ">
+      <input id="address" type="text" required>
 
       <label>Email</label>
-      <input id="email" placeholder="example@gmail.com">
+      <input id="email" type="email" required>
 
-      <button onclick="submitForm()">Xác nhận</button>
+      <button type="button" onclick="submitForm()">Xác nhận</button>
     </div>
   </div>
 
-  <!-- THÔNG BÁO -->
-  <div class="card success" id="successBox">
+  <!-- SUCCESS -->
+  <div class="card success" id="successBox" style="display:none">
     <div class="card-body">
-      ✅ Đã gửi thông tin thành công <br>
-      Vui lòng chờ xử lý...
+      ✅ Bạn đã điền thông tin thành công<br>
+      Vui lòng đợi trong giây lát...
     </div>
   </div>
 
 <script>
 function submitForm() {
-  if (!/^\d{12}$/.test(cccd.value)) return alert("CCCD không hợp lệ");
-  if (!/^0\d{9}$/.test(phone.value)) return alert("SĐT không hợp lệ");
-  if (!/^\S+@\S+\.\S+$/.test(email.value)) return alert("Email không hợp lệ");
+  const cccd = document.getElementById("cccd");
+  const phone = document.getElementById("phone");
+  const email = document.getElementById("email");
 
-  formBox.style.display = "none";
-  successBox.style.display = "block";
+  if (!/^\d{12}$/.test(cccd.value)) {
+    alert("Thông tin không hợp lệ");
+    return;
+  }
+
+  if (!/^0\d{9}$/.test(phone.value)) {
+    alert("Thông tin không hợp lệ");
+    return;
+  }
+
+  if (!/^\S+@\S+\.\S+$/.test(email.value)) {
+    alert("Thông tin không hợp lệ");
+    return;
+  }
+
+  document.getElementById("formBox").style.display = "none";
+  document.getElementById("successBox").style.display = "block";
 }
 </script>
 
